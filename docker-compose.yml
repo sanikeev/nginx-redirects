@@ -1,0 +1,13 @@
+web:
+  image: nginx
+  ports:
+    - "80:80"
+    - "443:443"
+  volumes:
+    - ./index.html:/usr/share/nginx/index.html
+    - ./.docker/nginx/nginx.conf/:/etc/nginx/conf.d/nginx.conf
+    - ./.docker/nginx/nginx-selfsigned.key:/etc/ssl/private/nginx-selfsigned.key
+    - ./.docker/nginx/nginx-selfsigned.crt:/etc/ssl/private/nginx-selfsigned.crt
+  environment:
+    - NGINX_HOST=test.lvh.me
+    - NGINX_PORT=80
